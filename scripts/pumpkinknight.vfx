@@ -1,20 +1,19 @@
-class: pumpkinknight
-    actor derive
+class: %pumpkinknight
+    %actor derive
+    is-a %platformer
+class;
 
 
 : !vx  fac @ dir>v  1.5 dup 2p*  vx 2! ;
-pumpkinknight :: _idle  0 0 vx 2! ;
-pumpkinknight :: _walk  !vx ;
+%pumpkinknight :: _idle  0 0 vx 2! ;
+%pumpkinknight :: _walk  !vx ;
 
 : turn/idle dirkeys? if  sudlr4  walk  else  idle  then ;
 : ?walk  dirkeys? if  pudlr4  walk  then ;
 
-public
-
-pumpkinknight :: init
+%pumpkinknight :: init
     idle  pumpkinhead1.png bmp !
     act> 
-    pumpkinhead1.png 4 8 ticks cycle
+    pumpkinhead1.png 4 8 ticks frmspin
     dirkeysup? if  turn/idle  else  ?walk  then ;
 
-class;

@@ -1,0 +1,9 @@
+: render ( - ) 
+    bg  sprites ;
+
+: think ( - ) 
+    animate  step ;
+
+: game ( - ) 
+    show>  crt>  render  1 gamelife +!  think ;
+

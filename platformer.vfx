@@ -3,26 +3,28 @@
 \ WIP
 \ ------------------------------------------------------------------------------
 
-prop hp
-prop fac
-prop gravity
-prop falling
-prop in-air
-prop jumppower 
-prop risepower 
-prop walkspeed
-prop inertia
-prop climbing
+trait: %platformer
+    prop hp
+    prop fac
+    prop gravity
+    prop falling
+    prop in-air
+    prop jumppower 
+    prop risepower 
+    prop walkspeed
+    prop inertia
+    prop climbing
 
-m: _walk  drop ;  : walk  me _walk ;
-m: _jump ;        : jump  in-air on  me _jump ;
-m: _squat ;       : squat  me _squat ;
-m: _idle ;        : idle  me _idle ;
-m: _die ;         : die  me _die ;
-m: _fall ;        
-\ m: kill ;
-m: burn ;
-m: _climb ;       : climb me _climb ;
+    :: _walk  drop ;  : walk  me _walk ;
+    :: _jump ;        : jump  in-air on  me _jump ;
+    :: _squat ;       : squat  me _squat ;
+    :: _idle ;        redef : idle  me _idle ;
+    :: _die ;         : die  me _die ;
+    :: _fall ;        
+    \ m: kill ;
+    :: burn ;
+    :: _climb ;       : climb me _climb ;
+trait;
 
 : revive   100 hp ! idle ;
 : ?die  hp @ 0 <= -exit die ;

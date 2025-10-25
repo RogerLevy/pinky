@@ -1,13 +1,14 @@
-prop kind
 
-bunny.png 32 32 tileset bunny.ts
+bunny.png 32 32 +tileset bunny.ts
 
-class: bunny
-    actor derive
+class: %bunny
+    %actor derive
+    prop kind
+class;
 
 : ?h  vx @ 0< if h| then ;
 : ?dir  p1 -> x @ x @ > if negate then ;
-: runaway  3.0 ?dir vx !  act> bunny.ts 1 tile ?h 2 125 cycle ;
+: runaway  3.0 ?dir vx !  act> bunny.ts 1 tile ?h 2 125 frmspin ;
 
 : kind0 ;
 : kind1  act> p1 -> x 2@ x 2@ dist 48. <= -exit runaway ;
@@ -17,11 +18,9 @@ create kinds
     ' kind1 ,
 here kinds - cell/ constant #kinds
 
-bunny :: init
+%bunny :: init
     bunny.ts 0 tile bmp !
     #kinds rnd kind !
     \ 1 kind !
     kind @ 0 #kinds 1 - clamp cells kinds + @ execute
 ;
-
-class;

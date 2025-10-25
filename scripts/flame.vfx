@@ -1,7 +1,8 @@
-require scripts/fireball.vfx
+require %idir%/fireball.vfx
 
-class: flame
-    actor derive
+class: %flame
+    %actor derive
+class;
 
 create flamtbl
     flame.png ,
@@ -13,15 +14,13 @@ create flamtbl
     fac @ cells flamtbl + @ bmp !
     fac @ dir>v 2. 2. 2p* vx 2! ;
     
-: explode  *zelda2*  8 for  me 0 0 from fireball one drop  loop ;
+: explode  *zelda2*  8 for  me 0 0 from %fireball one drop  loop ;
     
 : ?destroy
     dup @ | t a |
     t solid? if explode me unload then
     t destructible? if 0 a ! then ;
 
-flame :: init
+%flame :: init
     flame.png bmp !
-    act> ?out ?exit  ?face  -4 -2 6 6 bg0 tread> ?destroy ;
-
-class;
+    act> ?cull  ?face  -4 -2 6 6 playfield tread> ?destroy ;

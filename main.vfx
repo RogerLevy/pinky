@@ -2,8 +2,38 @@
 \ Pinky the Penguin
 \ ------------------------------------------------------------------------------
 
-include %idir%\..\spunk\loader.vfx
+\ Constants
+16 constant gap
+320 constant gamew
+240 constant gameh
+gamew >. constant gamew.
+gameh >. constant gameh.
+
+\ Load engine
+include %vfxland5%\supershow\supershow.vfx
+include %vfxland5%\spunk\spunk.vfx
+
+\ load game-specific modules (dependencies)
+require common.vfx
+
+\ require scripts/bugaboo.vfx 
+\ require scripts/bunny.vfx 
+\ require scripts/fireball.vfx 
+\ require scripts/flame.vfx 
+\ require scripts/moneybag.vfx 
+\ require scripts/pinky.vfx 
+\ require scripts/pumpkinknight.vfx 
+\ require scripts/wintext.vfx
+
+\ Automated script and asset loads
+\ This includes all scripts in modes\.
+load-project
+
+redef : main ( - )
+    init-supershow 
+    0 gamelife ! 
+    game 1 level ;
+
 debug @ [if]
-    include %idir%\..\spunk\tools.vfx
-    include %idir%\testing.vfx
+    main
 [then]

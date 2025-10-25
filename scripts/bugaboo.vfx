@@ -1,11 +1,11 @@
-class: bugaboo
-    actor derive
+class: %bugaboo
+    %actor derive
+class;
 
 : -+  2 rnd 2 * 1 - ;
-: somewhere  320 240 2rnd ;
+: somewhere  gamew gameh 2rnd ;
 
-
-bugaboo :: init
+%bugaboo :: init
     1000 rnd ts + bmp !
     -+ -+ 2>. vx 2!
     act>
@@ -13,9 +13,7 @@ bugaboo :: init
             4 rnd 24 << bmp @ $FFFF and or bmp !
         then
         <up> held? if -1. y +! then 
-        x @ 0 320. within not if vx @ negate vx ! then
-        y @ 0 240. within not if vy @ negate vy ! then ;
+        x @ 0 gamew. within not if vx @ negate vx ! then
+        y @ 0 gameh. within not if vy @ negate vy ! then ;
         
-: ?bugaboo  somewhere at bugaboo one drop ;
-
-class;
+: ?bugaboo  somewhere at %bugaboo one drop ;
